@@ -49,16 +49,16 @@ module.exports = function({  }) {
     constructor({  }) {
     }
     static async regexInflight(pattern, text) {
-      return (require("../../../external_js.js")["regexInflight"])(pattern, text)
+      return (require("../../../external_ts.ts")["regexInflight"])(pattern, text)
     }
     static async getUuid() {
-      return (require("../../../external_js.js")["getUuid"])()
+      return (require("../../../external_ts.ts")["getUuid"])()
     }
     static async getData() {
-      return (require("../../../external_js.js")["getData"])()
+      return (require("../../../external_ts.ts")["getData"])()
     }
     static async print(msg) {
-      return (require("../../../external_js.js")["print"])(msg)
+      return (require("../../../external_ts.ts")["print"])(msg)
     }
     async call() {
       $helpers.assert((await Foo.regexInflight("[a-z]+-\\d+", "abc-123")), "Foo.regexInflight(\"[a-z]+-\\\\d+\", \"abc-123\")");
@@ -123,10 +123,10 @@ class $Root extends $stdlib.std.Resource {
         super($scope, $id);
       }
       static getGreeting(name) {
-        return (require("../../../external_js.js")["getGreeting"])(name)
+        return (require("../../../external_ts.ts")["getGreeting"])(name)
       }
       static preflightBucket(bucket, id) {
-        return (require("../../../external_js.js")["preflightBucket"])(bucket, id)
+        return (require("../../../external_ts.ts")["preflightBucket"])(bucket, id)
       }
       static _toInflightType() {
         return `
@@ -241,7 +241,7 @@ class $Root extends $stdlib.std.Resource {
     $helpers.assert($helpers.eq((Foo.getGreeting("Wingding")), "Hello, Wingding!"), "Foo.getGreeting(\"Wingding\") == \"Hello, Wingding!\"");
     const f = new Foo(this, "Foo");
     const bucket = this.node.root.new("@winglang/sdk.cloud.Bucket", cloud.Bucket, this, "my-bucket");
-    const result = (Foo.preflightBucket(bucket, "my-bucket"));
+    (Foo.preflightBucket(bucket, "my-bucket"));
     this.node.root.new("@winglang/sdk.std.Test", std.Test, this, "test:call", new $Closure1(this, "$Closure1"));
     this.node.root.new("@winglang/sdk.std.Test", std.Test, this, "test:console", new $Closure2(this, "$Closure2"));
   }
